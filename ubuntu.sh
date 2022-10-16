@@ -27,4 +27,5 @@ cp Caddyfile /etc/caddy/Caddyfile
 fi
 cd /etc/caddy/
 caddy start
+cd ORIGIN_DIR
 echo "All up and running. Call https://localhost"
