@@ -1,10 +1,24 @@
 #!/bin/bash
+sudo apt update && sudo apt upgrade -y
 ORIGIN_DIR=echo "$PWD"
-if [ -d Openslides]; then
-echo "Directory \"Openslides\" ist already taken up. please remove the directory through 'rm -rf Openslides'"
+echo "Please enter a directory name for OpenSlides to be installed"
+read DIR_NAME
+
+read -r -p "Do you have a FQDN (eg. example.com)? [y/N] " response
+case "$response" in
+    [yY][eE][sS]|[yY]) 
+        read -r -p "Please provide this Domain" FQDN
+        ;;
+    *)
+        FQDN=:80
+        ;;
+esac
+
+if [ -d DIR_NAME]; then
+echo "Directory \"$DIR_NAME\" ist already taken up. please remove the directory through 'rm -rf $DIR_NAME' or rename it"
 else
-mkdir OpenSlides
-cd Openslides
+mkdir $DIR_NAME
+cd $DIR_NAME
 fi
 sudo apt install docker.io -y && sudo apt install docker-compose -y && sudo apt install git -y
 wget https://github.com/OpenSlides/openslides-manage-service/releases/download/latest/openslides
@@ -19,6 +33,7 @@ curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | sudo 
 sudo apt update
 sudo apt install caddy
 cd ..
+echo -en '$FQDN { \n     reverse_proxy https://localhost:8000 { \n               transport http {\n                     tls_insecure_skip_verify\n               }\n     }\n}' > Caddyfile
 if [-f /etc/caddy/Caddyfile]; then
 rm /etc/caddy/Caddyfile
 cp Caddyfile /etc/caddy/Caddyfile
