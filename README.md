@@ -2,14 +2,20 @@
 A quick way to install openslides 4 on the current server
 
 # Installation
+
+Pick Your OS for specific installation
+
+---
 ## OS
 I recommend to use a Debain based distribution
 
-- **[Ubuntu](###ubuntu)**
-- **[Debian](###Debian)**
-- **[CentOS](###CentOS)**
-- **[ArchLinux](###ArchLinux)**
-- **[FreeBSD](###FreeBSD)**
+- [Ubuntu](#ubuntu)
+- [Debian](#Debian)
+- [CentOS](#CentOS)
+- [ArchLinux](#ArchLinux)
+- [FreeBSD](#FreeBSD)
+---
+
 ### Ubuntu
 **[`^        back to top        ^`](##os)**
 
