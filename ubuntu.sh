@@ -1,13 +1,13 @@
 #!/bin/bash
 sudo apt update && sudo apt upgrade -y
 ORIGIN_DIR=echo "$PWD"
-echo "Please enter a directory name for OpenSlides to be installed"
+echo "Please enter a directory name for OpenSlides to be installed: "
 read DIR_NAME
 
 read -r -p "Do you have a FQDN (eg. example.com)? [y/N] " response
 case "$response" in
-    [yY][eE][sS]|[yY]) 
-        read -r -p "Please provide this Domain" FQDN
+    [yY][eE][sS]|[yY])
+        read -p "Please provide this Domain" FQDN
         ;;
     *)
         FQDN=:80
