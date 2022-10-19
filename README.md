@@ -26,12 +26,12 @@ I recommend to use a Debain based distribution
 
 Clone this repository into your directory. If you prefer to choose the Directory where everything should be installed yourself, then go into the directory and then clone the repository:
 
-    git clone https://github.com/beammedown/lsv-openslides-installer
+    git clone https://github.com/Beammedown/lsv-openslides-installer
     cd lsv-openslides-setup
     chmod +x ubuntu.sh
     ./ubuntu.sh
 
-_If you encounter any errors create an [Issue](https://github.com/beammedown/lsv-openslides-installer/issues/new/choose/)_
+_If you encounter any errors create an [Issue](https://github.com/Beammedown/lsv-openslides-installer/issues/new/choose/)_
 
 ### Debian
 
@@ -39,12 +39,12 @@ _If you encounter any errors create an [Issue](https://github.com/beammedown/lsv
 
 Clone this repository into your directory. If you prefer to choose the Directory where everything should be installed yourself, then go into the directory and then clone the repository:
 
-    git clone https://github.com/beammedown/lsv-openslides-installer
+    git clone https://github.com/Beammedown/lsv-openslides-installer
     cd lsv-openslides-setup
     chmod +x debian.sh
     ./debian.sh
 
-_If you encounter any errors create an [Issue](https://github.com/beammedown/lsv-openslides-installer/issues/new/choose/)_
+_If you encounter any errors create an [Issue](https://github.com/Beammedown/lsv-openslides-installer/issues/new/choose/)_
 
 ### CentOS
 
@@ -52,12 +52,12 @@ _If you encounter any errors create an [Issue](https://github.com/beammedown/lsv
 
 Clone this repository into your directory. If you prefer to choose the Directory where everything should be installed yourself, then go into the directory and then clone the repository:
 
-    git clone https://github.com/beammedown/lsv-openslides-installer
+    git clone https://github.com/Beammedown/lsv-openslides-installer
     cd lsv-openslides-setup
     chmod +x centos.sh
     ./centos.sh
 
-_If you encounter any errors create an [Issue](https://github.com/beammedown/lsv-openslides-installer/issues/new/choose/)_
+_If you encounter any errors create an [Issue](https://github.com/Beammedown/lsv-openslides-installer/issues/new/choose/)_
 
 ### ArchLinux
 
@@ -65,12 +65,12 @@ _If you encounter any errors create an [Issue](https://github.com/beammedown/lsv
 
 Clone this repository into your directory. If you prefer to choose the Directory where everything should be installed yourself, then go into the directory and then clone the repository:
 
-    git clone https://github.com/beammedown/lsv-openslides-installer
+    git clone https://github.com/Beammedown/lsv-openslides-installer
     cd lsv-openslides-setup
     chmod +x archlinux.sh
     ./archlinux.sh
 
-_If you encounter any errors create an [Issue](https://github.com/beammedown/lsv-openslides-installer/issues/new/choose/)_
+_If you encounter any errors create an [Issue](https://github.com/Beammedown/lsv-openslides-installer/issues/new/choose/)_
 
 ### FreeBSD
 
@@ -78,9 +78,9 @@ _If you encounter any errors create an [Issue](https://github.com/beammedown/lsv
 
 Clone this repository into your directory. If you prefer to choose the Directory where everything should be installed yourself, then go into the directory and then clone the repository:
 
-    git clone https://github.com/beammedown/lsv-openslides-installer
+    git clone https://github.com/Beammedown/lsv-openslides-installer
     cd lsv-openslides-setup
     chmod +x freebsd.sh
     ./freebsd.sh
 
-_If you encounter any errors create an [Issue](https://github.com/beammedown/lsv-openslides-installer/issues/new/choose/)_
+_If you encounter any errors create an [Issue](https://github.com/Beammedown/lsv-openslides-installer/issues/new/choose/)_
