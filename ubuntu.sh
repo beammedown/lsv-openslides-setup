@@ -7,7 +7,7 @@ read DIR_NAME
 read -r -p "Do you have a FQDN (eg. example.com)? [y/N] " response
 case "$response" in
     [yY][eE][sS]|[yY])
-        read -p "Please provide this Domain" FQDN
+        read -p "Please provide this Domain: " FQDN
         ;;
     *)
         FQDN=:80

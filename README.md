@@ -26,9 +26,18 @@ I recommend to use a Debain based distribution
 
 Clone this repository into your directory. If you prefer to choose the Directory where everything should be installed yourself, then go into the directory and then clone the repository:
 
-    git clone https://github.com/Beammedown/lsv-openslides-installer
+    git clone https://github.com/Beammedown/lsv-openslides-setup
+
+After this:
+
     cd lsv-openslides-setup
+
+Go on with changing mod:
+
     chmod +x ubuntu.sh
+
+Run the script:
+
     ./ubuntu.sh
 
 _If you encounter any errors create an [Issue](https://github.com/Beammedown/lsv-openslides-installer/issues/new/choose/)_
@@ -39,7 +48,7 @@ _If you encounter any errors create an [Issue](https://github.com/Beammedown/lsv
 
 Clone this repository into your directory. If you prefer to choose the Directory where everything should be installed yourself, then go into the directory and then clone the repository:
 
-    git clone https://github.com/Beammedown/lsv-openslides-installer
+    git clone https://github.com/Beammedown/lsv-openslides-setup
     cd lsv-openslides-setup
     chmod +x debian.sh
     ./debian.sh
@@ -52,7 +61,7 @@ _If you encounter any errors create an [Issue](https://github.com/Beammedown/lsv
 
 Clone this repository into your directory. If you prefer to choose the Directory where everything should be installed yourself, then go into the directory and then clone the repository:
 
-    git clone https://github.com/Beammedown/lsv-openslides-installer
+    git clone https://github.com/Beammedown/lsv-openslides-setup
     cd lsv-openslides-setup
     chmod +x centos.sh
     ./centos.sh
@@ -65,9 +74,18 @@ _If you encounter any errors create an [Issue](https://github.com/Beammedown/lsv
 
 Clone this repository into your directory. If you prefer to choose the Directory where everything should be installed yourself, then go into the directory and then clone the repository:
 
-    git clone https://github.com/Beammedown/lsv-openslides-installer
+    git clone https://github.com/Beammedown/lsv-openslides-setup
+
+After this:
+
     cd lsv-openslides-setup
+
+Go on with changing mod:
+
     chmod +x archlinux.sh
+
+run the script:
+
     ./archlinux.sh
 
 _If you encounter any errors create an [Issue](https://github.com/Beammedown/lsv-openslides-installer/issues/new/choose/)_
@@ -78,7 +96,7 @@ _If you encounter any errors create an [Issue](https://github.com/Beammedown/lsv
 
 Clone this repository into your directory. If you prefer to choose the Directory where everything should be installed yourself, then go into the directory and then clone the repository:
 
-    git clone https://github.com/Beammedown/lsv-openslides-installer
+    git clone https://github.com/Beammedown/lsv-openslides-setup
     cd lsv-openslides-setup
     chmod +x freebsd.sh
     ./freebsd.sh
