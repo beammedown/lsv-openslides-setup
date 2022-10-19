@@ -2,13 +2,13 @@
 
 A quick way to install openslides 4 on the current server
 
+---
+
 ## Installation
 
 Pick Your OS for specific installation
 
----
-
-## OS
+>## OS
 
 I recommend to use a Debain based distribution
 
@@ -58,7 +58,6 @@ Clone this repository into your directory. If you prefer to choose the Directory
     ./centos.sh
 
 _If you encounter any errors create an [Issue](https://github.com/beammedown/lsv-openslides-installer/issues/new/choose/)_
-
 
 ### ArchLinux
 

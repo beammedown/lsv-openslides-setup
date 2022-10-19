@@ -44,3 +44,12 @@ cd /etc/caddy/
 caddy start
 cd ORIGIN_DIR
 echo "All up and running. Call https://localhost"
+read -p "Do you want to create a crontab that starts OpenSlides on boot? [y/N]" response
+case "$response" in
+    [yY][eE][sS]|[yY])
+        (crontab -l 2>/dev/null; echo "*/5 * * * * $DIR_NAME/startcrontab.sh") | crontab -
+        ;;
+    *)
+        FQDN=:80
+        ;;
+esac
