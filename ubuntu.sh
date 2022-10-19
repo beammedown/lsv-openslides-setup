@@ -33,7 +33,7 @@ curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | sudo 
 sudo apt update
 sudo apt install caddy
 cd ..
-echo -en '$FQDN { \n     reverse_proxy https://localhost:8000 { \n               transport http {\n                     tls_insecure_skip_verify\n               }\n     }\n}' > Caddyfile
+echo -en "$FQDN { \n     reverse_proxy https://localhost:8000 { \n               transport http {\n                     tls_insecure_skip_verify\n               }\n     }\n}" > Caddyfile
 if [-f /etc/caddy/Caddyfile]; then
 rm /etc/caddy/Caddyfile
 cp Caddyfile /etc/caddy/Caddyfile
