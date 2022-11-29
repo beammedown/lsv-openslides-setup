@@ -4,7 +4,7 @@ ORIGIN_DIR=echo "$PWD"
 echo "Please enter a directory name for OpenSlides to be installed: "
 read DIR_NAME
 
-read -r -p "Do you have a FQDN (eg. example.com)? [y/N] " response
+read -r -p "Do you have a FQDN (eg. example.com)? [Y/N] " response
 case "$response" in
     [yY][eE][sS]|[yY])
         read -p "Please provide this Domain" FQDN
