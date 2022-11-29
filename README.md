@@ -102,3 +102,12 @@ Clone this repository into your directory. If you prefer to choose the Directory
     ./freebsd.sh
 
 _If you encounter any errors create an [Issue](https://github.com/Beammedown/lsv-openslides-installer/issues/new/choose/)_
+
+## Uninstall
+
+To uninstall all traces of the Installation and being able to restart the process, use the cleanall.sh script.
+
+    chmod +x cleanall.sh
+    ./cleanall.sh
+
+After this script you should be able to run the installation script from new without running into any problems.
