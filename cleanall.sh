@@ -1,5 +1,6 @@
 #!/bin/bash
 docker kill $(docker ps -q)
+docker-compose rm
 docker container prune
 docker volume prune
 docker rmi $(docker images -q) -f
