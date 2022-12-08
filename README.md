@@ -2,6 +2,9 @@
 
 A quick way to install openslides 4 on the current server
 
+TODO
+>[ ] Auf Deutsch Übersetzen
+
 ---
 
 ## Installation
