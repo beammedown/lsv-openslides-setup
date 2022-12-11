@@ -44,13 +44,7 @@ sudo apt install caddy
 cd ..
 echo ###### SETTING UP CADDY
 echo -en "$FQDN { \n     reverse_proxy https://localhost:8000 { \n               transport http {\n                     tls_insecure_skip_verify\n               }\n     }\n}" > Caddyfile
-if [-f /etc/caddy/Caddyfile];
-then
-    rm /etc/caddy/Caddyfile
-    cp Caddyfile /etc/caddy/Caddyfile
-else
-    cp Caddyfile /etc/caddy/Caddyfile
-fi
+if [-f /etc/caddy/Caddyfile]; then rm /etc/caddy/Caddyfile && cp Caddyfile /etc/caddy/Caddyfile; else cp Caddyfile /etc/caddy/Caddyfile; fi
 cd /etc/caddy/
 caddy start
 cd ORIGIN_DIR
