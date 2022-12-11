@@ -1,9 +1,9 @@
 #!/bin/bash
-docker kill $(docker ps -q)
+docker kill "$(docker ps -q)"
 docker-compose rm
 docker container prune
 docker volume prune
-docker rmi $(docker images -q) -f
+docker rmi "$(docker images -q)" -f
 cd
 rm -rf lsv-openslides-setup
 cd /etc/caddy

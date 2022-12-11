@@ -14,7 +14,7 @@ case "$response" in
         ;;
 esac
 
-if [ -d DIR_NAME]; then
+if [ -d "$DIR_NAME"]; then
 echo "Directory \"$DIR_NAME\" ist already taken up. please remove the directory through 'rm -rf $DIR_NAME' or rename it"
 else
 mkdir $DIR_NAME
