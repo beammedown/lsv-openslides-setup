@@ -13,29 +13,7 @@ __dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # Check if Docker is installed
 echo "Prüfe auf Docker..."
 if [ -x "$(command -v docker)" ]; then
-    echo "Update Docker wenn nötig!"
-    read -r -p "Soll ich Docker für dich Updaten? WARNUNG solltest du aktuell schon Container laufen haben könnten diese gestoppt und korruptiert werden [Y/N] " response
-    case "$response" in
-        [yY][eE][sS]|[yY])
-            echo "sudo apt install docker.io -y"
-            ${__dir}/install-docker.sh
-            ;;
-        *)
-            read -r -p "Bist du dir sicher, dass du die neueste Version von Docker hast? [Y/N] " response
-            case "$response" in
-                [yY][eE][sS]|[yY])
-                echo "Dann fahren wir fort"
-            ;;
-        *)
-            echo "sudo apt install docker.io -y oder schaue auf https://docs.docker.com/engine/install/ubuntu/"
-            exit 1
-            ;;
-    esac
-            echo "Update Docker manuell oder schaue auf https://docs.docker.com/engine/install/ubuntu"
-            exit 1
-            ;;
-    esac
-
+    echo "Docker ist installiert."
 else
     echo "Installiere Docker bevor du fortfährst!"
     read -r -p "Soll ich Docker installieren? [Y/N] " response
@@ -48,7 +26,6 @@ else
             exit 1
             ;;
     esac
-    ${__dir}/install-docker.sh
 fi
 
 
@@ -72,7 +49,7 @@ echo ###### SETTING UP DIRECTORY ######
 #    mkdir $DIR_NAME
 #    cd $DIR_NAME
 #fi
-mdkir os4
+mkdir os4
 cd os4
 echo ###### INSTALLING NECESSARY DEPENDENCIES ######
 sudo apt install docker.io -y && sudo apt install docker-compose -y && sudo apt install git -y
@@ -91,11 +68,11 @@ curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | sudo 
 sudo apt update
 sudo apt install caddy
 cd ..
-echo ###### SETTING UP CADDY
-echo -en "$FQDN { \n     reverse_proxy https://localhost:8000 { \n               transport http {\n                     tls_insecure_skip_verify\n               }\n     }\n}" > Caddyfile
+echo ###### SETTING UP CADDY ########
+echo -en "$FQDN { \n    reverse_proxy https://localhost:8000 { \n        transport http {\n            tls_insecure_skip_verify\n        }\n    }\n}" > Caddyfile
 if [-f /etc/caddy/Caddyfile]; then rm /etc/caddy/Caddyfile && cp Caddyfile /etc/caddy/Caddyfile; else cp Caddyfile /etc/caddy/Caddyfile; fi
 cd /etc/caddy/
 caddy start
 cd BASEDIR
-echo "All up and running. Call https://localhost"
+echo "All up and running. Call https://$FQDN to access OpenSlides."
 echo "Wenn du OpenSlides herunterfahren möchtest, kannst du einfach in $BASEDIR/os4/ den Befehl 'docker compose down' eingeben."
