@@ -1,15 +1,63 @@
 #!/bin/bash
+
+echo "#############################################"
+echo "########## OpenSlides 4 Installer ###########"
+echo "#############################################"
+echo "Prüfe auf Updates..."
 echo ###### UPDATING ######
 sudo apt update && sudo apt upgrade -y
+BASEDIR=$(dirname "$0")
+
+# Check if Docker is installed
+echo "Prüfe auf Docker..."
+if [ -x "$(command -v docker)" ]; then
+    echo "Update Docker wenn nötig!"
+    read -r -p "Soll ich Docker für dich Updaten? WARNUNG solltest du aktuell schon Container laufen haben könnten diese gestoppt und korruptiert werden [Y/N] " response
+    case "$response" in
+        [yY][eE][sS]|[yY])
+            echo "sudo apt install docker.io -y"
+            ./install_docker.sh
+            ;;
+        *)
+            read -r -p "Bist du dir sicher, dass du die neueste Version von Docker hast? [Y/N] " response
+            case "$response" in
+                [yY][eE][sS]|[yY])
+                echo "Dann fahren wir fort"
+            ;;
+        *)
+            echo "sudo apt install docker.io -y oder schaue auf https://docs.docker.com/engine/install/ubuntu/"
+            exit 1
+            ;;
+    esac
+            echo "Update Docker manuell oder schaue auf https://docs.docker.com/engine/install/ubuntu"
+            exit 1
+            ;;
+    esac
+
+else
+    echo "Installiere Docker bevor du fortfährst!"
+    read -r -p "Soll ich Docker installieren? [Y/N] " response
+    case "$response" in
+        [yY][eE][sS]|[yY])
+            ./install_docker.sh
+            ;;
+        *)
+            echo "sudo apt install docker.io -y oder schaue auf https://docs.docker.com/engine/install/ubuntu/"
+            exit 1
+            ;;
+    esac
+    ./install_docker.sh
+fi
+
 echo ###### SELECTING DIRECTORY ######
 ORIGIN_DIR=echo "$PWD"
 #echo "Please enter a directory name for OpenSlides to be installed: "
 #read DIR_NAME
 echo ###### GATHERING DOMAIN INFORMATION ######
-read -r -p "Do you have a FQDN (eg. example.com)? [Y/N] " response
+read -r -p "Hast du eine Domain (bsp. example.com)? [Y/N] " response
 case "$response" in
     [yY][eE][sS]|[yY])
-        read -p "Please provide this Domain: " FQDN
+        read -p "Gib diese Domain bitte an: " FQDN
         ;;
     *)
         FQDN=:80
