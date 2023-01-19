@@ -6,6 +6,8 @@ echo "#############################################"
 echo "Prüfe auf Updates..."
 echo ###### UPDATING ######
 sudo apt update && sudo apt upgrade -y
+
+echo ###### SELECTING DIRECTORY ######
 BASEDIR=$(dirname "$0")
 
 # Check if Docker is installed
@@ -16,7 +18,7 @@ if [ -x "$(command -v docker)" ]; then
     case "$response" in
         [yY][eE][sS]|[yY])
             echo "sudo apt install docker.io -y"
-            ./install_docker.sh
+            /BASEDIR/install_docker.sh
             ;;
         *)
             read -r -p "Bist du dir sicher, dass du die neueste Version von Docker hast? [Y/N] " response
@@ -39,18 +41,17 @@ else
     read -r -p "Soll ich Docker installieren? [Y/N] " response
     case "$response" in
         [yY][eE][sS]|[yY])
-            ./install_docker.sh
+            /BASEDIR/install_docker.sh
             ;;
         *)
             echo "sudo apt install docker.io -y oder schaue auf https://docs.docker.com/engine/install/ubuntu/"
             exit 1
             ;;
     esac
-    ./install_docker.sh
+    /BASEDIR/install_docker.sh
 fi
 
-echo ###### SELECTING DIRECTORY ######
-ORIGIN_DIR=echo "$PWD"
+
 #echo "Please enter a directory name for OpenSlides to be installed: "
 #read DIR_NAME
 echo ###### GATHERING DOMAIN INFORMATION ######
@@ -95,5 +96,5 @@ echo -en "$FQDN { \n     reverse_proxy https://localhost:8000 { \n              
 if [-f /etc/caddy/Caddyfile]; then rm /etc/caddy/Caddyfile && cp Caddyfile /etc/caddy/Caddyfile; else cp Caddyfile /etc/caddy/Caddyfile; fi
 cd /etc/caddy/
 caddy start
-cd ORIGIN_DIR
+cd BASEDIR
 echo "All up and running. Call https://localhost"
