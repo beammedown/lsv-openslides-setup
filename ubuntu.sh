@@ -8,7 +8,7 @@ echo ###### UPDATING ######
 sudo apt update && sudo apt upgrade -y
 
 echo ###### SELECTING DIRECTORY ######
-BASEDIR=$(dirname "$0")
+__dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # Check if Docker is installed
 echo "Prüfe auf Docker..."
@@ -18,7 +18,7 @@ if [ -x "$(command -v docker)" ]; then
     case "$response" in
         [yY][eE][sS]|[yY])
             echo "sudo apt install docker.io -y"
-            install_docker.sh
+            ${__dir}/install_docker.sh
             ;;
         *)
             read -r -p "Bist du dir sicher, dass du die neueste Version von Docker hast? [Y/N] " response
@@ -41,14 +41,14 @@ else
     read -r -p "Soll ich Docker installieren? [Y/N] " response
     case "$response" in
         [yY][eE][sS]|[yY])
-            install_docker.sh
+            ${__dir}/install_docker.sh
             ;;
         *)
             echo "sudo apt install docker.io -y oder schaue auf https://docs.docker.com/engine/install/ubuntu/"
             exit 1
             ;;
     esac
-    install_docker.sh
+    ${__dir}/install_docker.sh
 fi
 
 
