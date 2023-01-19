@@ -18,7 +18,7 @@ if [ -x "$(command -v docker)" ]; then
     case "$response" in
         [yY][eE][sS]|[yY])
             echo "sudo apt install docker.io -y"
-            /$BASEDIR/install_docker.sh
+            install_docker.sh
             ;;
         *)
             read -r -p "Bist du dir sicher, dass du die neueste Version von Docker hast? [Y/N] " response
@@ -41,14 +41,14 @@ else
     read -r -p "Soll ich Docker installieren? [Y/N] " response
     case "$response" in
         [yY][eE][sS]|[yY])
-            /$BASEDIR/install_docker.sh
+            install_docker.sh
             ;;
         *)
             echo "sudo apt install docker.io -y oder schaue auf https://docs.docker.com/engine/install/ubuntu/"
             exit 1
             ;;
     esac
-    /$BASEDIR/install_docker.sh
+    install_docker.sh
 fi
 
 
