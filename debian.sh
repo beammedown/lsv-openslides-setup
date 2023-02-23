@@ -77,17 +77,8 @@ sudo apt update && sudo apt upgrade -y
 echo ###### SELECTING DIRECTORY ######
 __dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-# Check if Docker is installed
-echo "Prüfe auf Docker..."
-if [ -x "$(command -v docker)" ]; then
-    echo "Docker ist installiert."
-else
-    echo "Installiere Docker bevor du fortfährst!"
-    echo "Siehe https://docs.docker.org/install/debian"
-fi
-
 echo ###### SETTING UP DIRECTORY ######
-if [ -d "$DIRECTORY" ];
+if [ -d "$DIRECTORY" ]
 then
     echo "Directory '${DIRECTORY}' ist already taken up. please remove the directory through 'rm -rf ${DIRECTORY}' or rename it"
     exit
@@ -97,7 +88,27 @@ else
 fi
 
 echo ###### INSTALLING NECESSARY DEPENDENCIES ######
-sudo apt install docker.io -y && sudo apt install docker-compose -y && sudo apt install git -y
+if [ -x "$(command -v docker)" ]; then
+    echo "Docker ist bereits installiert. Fahre fort..."
+else
+    echo "Docker wird installiert..."
+    sudo apt-get update
+    sudo apt-get install \
+    ca-certificates \
+    curl \
+    gnupg \
+    lsb-release
+    sudo mkdir -m 0755 -p /etc/apt/keyrings
+    curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+    echo \
+    "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian \
+    $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+    sudo apt-get update
+    sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+fi
+
+sudo apt install git -y
+
 echo ###### GETTING OPENSLIDES MANAGE SERVIVE ######
 wget https://github.com/OpenSlides/openslides-manage-service/releases/download/latest/openslides
 chmod +x openslides
