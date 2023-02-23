@@ -112,15 +112,13 @@ docker compose up --detach
 ./openslides initial-data
 echo ###### OPENSLIDES UP AND RUNNING ######
 echo ###### INSTALLING CADDY ######
-sudo apt install -y debian-keyring debian-archive-keyring apt-transport-https
-curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | sudo gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg
-curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | sudo tee /etc/apt/sources.list.d/caddy-stable.list
-sudo apt update
-sudo apt install caddy
+yum install yum-plugin-copr
+yum copr enable @caddy/caddy
+yum install caddy
 cd ..
 echo ###### SETTING UP CADDY ########
 echo -en "$FQDN { \n    reverse_proxy https://localhost:8000 { \n        transport http {\n            tls_insecure_skip_verify\n        }\n    }\n}" > Caddyfile
-if [-f /etc/caddy/Caddyfile]; then rm /etc/caddy/Caddyfile && cp Caddyfile /etc/caddy/Caddyfile; else cp Caddyfile /etc/caddy/Caddyfile; fi
+if [ -f /etc/caddy/Caddyfile ]; then rm /etc/caddy/Caddyfile && cp Caddyfile /etc/caddy/Caddyfile; else cp Caddyfile /etc/caddy/Caddyfile; fi
 cd /etc/caddy/
 caddy start
 cd ${__dir}
