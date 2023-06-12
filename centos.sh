@@ -92,12 +92,10 @@ if [ -x "$(command -v docker)" ]; then
     echo "Docker ist bereits installiert. Fahre fort..."
 else
     echo "Docker wird installiert..."
-    sudo yum install -y yum-utils
-    sudo yum-config-manager \
-    --add-repo \
-    https://download.docker.com/linux/centos/docker-ce.repo
-    sudo yum install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-    sudo systemctl start docker
+    sudo yum update
+    sudo yum install curl
+    curl -fsSL https://get.docker.com -o get-docker.sh
+    sudo sh get-docker.sh
 fi
 
 sudo apt install git -y
