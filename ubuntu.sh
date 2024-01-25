@@ -120,6 +120,16 @@ echo -en "$FQDN { \n    reverse_proxy https://localhost:8000 { \n        transpo
 if [ -f /etc/caddy/Caddyfile ]; then rm /etc/caddy/Caddyfile && cp Caddyfile /etc/caddy/Caddyfile; else cp Caddyfile /etc/caddy/Caddyfile; fi
 cd /etc/caddy/
 caddy start
-cd ${__dir}
+cd "${__dir}"
 echo "All up and running. Call https://$FQDN to access OpenSlides."
 echo "Wenn du OpenSlides herunterfahren möchtest, kannst du einfach in ${__dir}/os4/ den Befehl 'docker compose down' eingeben."
+
+echo "#############################################"
+echo "########## IMPORTANT INFORMATIONS ###########"
+echo "#############################################"
+echo "STANDARD USERNAME: superadmin"
+echo "STANDARD PASSWORD: superadmin"
+echo "BITTE ÄNDERE DAS PASSWORT SOFORT NACH DER ERSTEN ANMELDUNG!"
+echo "#############################################"
+
+exit 0
