@@ -10,9 +10,10 @@ Nutzung:
   ./ubuntu.sh [command]
 
 Verfügbare Commands:
-  -d --directory             Lege das Installationsverzeichnis fest
-  -f --domain                Lege die Domain fest
-  -v --version               Zeigt die Version des Skripts
+  -d   --directory             Lege das Installationsverzeichnis fest
+  -url --domain                Lege die Domain fest
+  -s   --default               Benutzt Standardwerte aus Dokumentation
+  -v   --version               Zeigt die Version des Skripts
 
 
 Flags:
@@ -33,13 +34,13 @@ while [[ $# -gt 0 ]]; do
         shift
         shift
         ;;
-    -f|--domain)
+    -url|--domain)
         FQDN="$2"
         shift
         shift
         ;;
-    --default)
-        DEFAULT=YES
+    -s|--default)
+        DEFAULT=true
         shift
         ;;
     -*|--*)
@@ -53,22 +54,22 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
-if [[ "$DEFAULT" == "NO" ]]
+if [[ $DEFAULT ]]
 then
+    echo "Set default"
+    DIRECTORY="os4"
+    FQDN=":80"
+else
     if [[ -z $DIRECTORY ]]
     then
             echo "Kein Installationsverzeichnis angegeben. Bitte gib ein Installationsverzeichnis mit der -d oder --directory Option an. Alternativ nutze --default"
             exit 0
-    elif [[ -z $SEARCHPATH ]]
+    elif [[ -z $FQDN ]]
     then
-        echo "Keine Domain angegeben. Bitte gib eine Domain mit der -f oder --domain Option an. Alternativ nutze --default"
+        echo "Keine Domain angegeben. Bitte gib eine Domain mit der -url oder --domain Option an. Alternativ nutze --default"
         exit 0
     fi
-else
-    DIRECTORY="os4"
-    FQDN=":80"
 fi
-
 
 echo "Prüfe auf Updates..."
 echo ###### UPDATING ######
@@ -119,6 +120,7 @@ echo ###### SETTING UP CADDY ########
 echo -en "$FQDN { \n    reverse_proxy https://localhost:8000 { \n        transport http {\n            tls_insecure_skip_verify\n        }\n    }\n}" > Caddyfile
 if [ -f /etc/caddy/Caddyfile ]; then rm /etc/caddy/Caddyfile && cp Caddyfile /etc/caddy/Caddyfile; else cp Caddyfile /etc/caddy/Caddyfile; fi
 cd /etc/caddy/
+caddy stop
 caddy start
 cd "${__dir}"
 echo "All up and running. Call https://$FQDN to access OpenSlides."
